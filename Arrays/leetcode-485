@@ -1,0 +1,21 @@
+//Max Consecutive Ones
+
+class Solution {
+    public int findMaxConsecutiveOnes(int[] arr) {
+        // do counts ko initialize karenge ek current record rakhega aur ek maximum
+        int count=0;
+        int count1=0;
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]==1){
+                count++;
+                // count1 hamesha maximum streak ko apne mein save kar lega
+                count1=Math.max(count1,count);
+            }
+            
+            else{
+                count=0;
+            }
+        }
+        return count1;
+    }
+}
