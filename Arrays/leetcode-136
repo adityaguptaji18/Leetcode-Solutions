@@ -1,0 +1,31 @@
+// Single Number 
+
+// Appraoch - 1 {Brute Force Algorithm}
+
+ // for(int i=0;i<arr.length;i++){
+        //     int count =0;
+        //     for(int j=0;j<arr.length;j++){
+        //         if(arr[j]==arr[i]){
+        //             count++;
+        //         }
+
+        //     }
+        //     if(count==1){
+        //         return arr[i];
+        //     }
+        // }
+        // return -1; 
+
+
+        // Approach - 2 {Optimal Approach using XOR Property}
+         
+    class Solution {
+    public int singleNumber(int[] arr) {
+      // there is a rule a^0 = a and a^a =0 so we check each element with its next element in binary form like 4=100 in binary and xor it with 0=000 then answer is 4 (100)
+        int xor=0;
+        for(int i:arr){
+            xor ^=i;
+        }
+        return xor;
+    }
+}
