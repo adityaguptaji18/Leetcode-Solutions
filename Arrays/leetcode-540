@@ -1,0 +1,44 @@
+//Single Element in a Sorted Array
+
+class Solution {
+    public int singleNonDuplicate(int[] arr) {
+
+        //xor solution gives O(n) complexity but we need O(logn)
+    //     int xor=0;
+    //     for(int i:arr){
+    //         xor ^=i;
+    //     }
+    //     return xor;
+
+        
+
+        int n=arr.length;
+        // agar 1 element hua toh wohi return kar denge
+        if(n==1) return arr[0];
+        // agar first second ke equal nhi hua toh first wala hee return
+        if(arr[0]!=arr[1]) return arr[0];
+        // agar last wala second last ke equal nhi hua toh last wala return 
+        if(arr[n-1]!=arr[n-2]) return arr[n-1];
+
+        // loop ko 2nd element se second last element tk chalayenge
+        int start=1;
+        int end=n-2;
+        while(start<=end){
+            int mid=start+(end-start)/2;
+            // agar middle wala uske agle ya pichle mein se kisi ke equal nhi hua toh middle hee return kar denge
+            if(arr[mid]!=arr[mid-1] && arr[mid]!=arr[mid+1]){
+                return arr[mid];
+            }
+            // isme do cases banenge first wala left part ke liye hoga ->(even,odd)  if middle odd hai toh left wala equal hona chahiye agar middle even hai toh right wala equal hona chahiye isme hum left part ko eliminate kar denge
+            else if((mid%2==1 && arr[mid]==arr[mid-1]) || (mid%2==0 && arr[mid]==arr[mid+1])){
+             start=mid+1;
+            }
+
+            //second wala right part ke liye hoga ->(odd,even)  if middle odd hai toh right wala equal hona chahiye agar middle even hai toh left wala equal hona chahiye isme hum right part ko eliminate kar denge
+            else{
+                end=mid-1;
+            }
+        }
+        return -1;
+    }
+}
