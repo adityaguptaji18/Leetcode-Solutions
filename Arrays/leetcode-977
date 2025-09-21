@@ -1,0 +1,21 @@
+// Squares of a Sorted Array
+
+class Solution {
+    public int[] sortedSquares(int[] arr) {
+        int left=0;
+        int right=arr.length-1;
+        int []result=new int[arr.length];
+        int k=arr.length-1;
+        while(left<=right){
+            if(Math.abs(arr[left])>Math.abs(arr[right])){
+                result[k--]=arr[left]*arr[left];
+                left++;
+            }
+            else{
+                result[k--]=arr[right]*arr[right];
+                right--;
+            }
+        }
+        return result;
+    }
+}
