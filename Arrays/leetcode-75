@@ -1,0 +1,48 @@
+// 75. Sort Colors
+
+class Solution {
+    public void sortColors(int[] arr) {
+        //  for(int i=0; i<arr.length; i++) {
+            
+           
+        //     for(int j=1; j<arr.length-i; j++) {
+                
+                
+        //         if(arr[j] < arr[j-1]) {
+        //             int temp = arr[j];
+        //             arr[j] = arr[j-1];
+        //             arr[j-1] = temp;
+        //         }
+        //     }
+        //  }
+
+        // it works on the basis of dutch national flag algorithm(DNF) . DNF uses three pointers . (elements from 0 to low-1 == 0) , (elements from low to mid-1== 1) , (elements from mid to high are anything 0/1/2) , (elemennts from high+1 to end ==2)
+        int low=0;
+        int mid=0;
+        int high=arr.length-1;
+        while(mid<=high){
+            // if mid 0 hua toh hum use low wake index se change karayenge taaki low index tk sab zero rahe 
+            if(arr[mid]==0){
+                int temp=arr[mid];
+                arr[mid]=arr[low];
+                arr[low]=temp;
+                low++;
+                mid++;
+            }
+            // mid 1 hua toh  koi dikkt ni hai wo already sorted rahega
+            else if(arr[mid]==1){
+                mid++;
+            }
+            // mid 2 hua toh hum use high index se swap karayenge taaki usse aage ke saare elements 2 rahe isme hum mid ko ++ nhi karayenge because mid pe toh galat element agya na
+            else{
+                int temp=arr[high];
+                arr[high]=arr[mid];
+                arr[mid]=temp;
+                high--;
+            }
+        }
+       
+        
+        
+    }
+}
