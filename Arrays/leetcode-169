@@ -1,0 +1,39 @@
+// 169. Majority Element
+
+class Solution {
+    public int majorityElement(int[] arr) {
+       int count = 0;
+       int ele = 0; 
+       // We are using the MOORE VOTING ALGORITHM.
+       // Idea: If arr[i] == ele, increase count, otherwise decrease it.
+       // When count becomes 0, pick the next element as the new candidate.
+       // This loop will give us the potential majority element (candidate).
+       for (int i = 0; i < arr.length; i++) {
+           if (count == 0) {
+               count = 1;
+               ele = arr[i];
+           }
+           else if (arr[i] == ele) {
+               count++;
+           }
+           else {
+               count--;
+           }
+       }
+
+       // After finding the candidate, verify if it is actually the majority.
+       // Count how many times 'ele' occurs in the array.
+       int count1 = 0;
+       for (int i = 0; i < arr.length; i++) {
+           if (arr[i] == ele) {
+               count1++;
+           }
+       }
+
+       // If it appears more than n/2 times, return it as majority element.
+       if (count1 > arr.length / 2) {
+           return ele;
+       }
+       return -1; // Otherwise, no majority element.
+    }
+}
