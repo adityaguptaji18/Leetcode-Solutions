@@ -1,0 +1,26 @@
+// Container With Most Water
+
+class Solution {
+    public int maxArea(int[] height) {
+      int left=0;
+      int right=height.length-1;
+      int maxArea=0;
+      while(left<right){
+
+        // iss question ka water container se koi lena dena nhi hai hume just ek rectangle ka max area niklana
+        
+        int area=Math.min(height[left],height[right])*(right-left);
+        maxArea=Math.max(maxArea,area);
+        // agar hum pointer ko badhayenge toh area less hee hoga 
+        // isisliye hum area increase karne ke liye smaller height wale left ya right ko move karenge
+
+        if(height[left]<height[right]){
+            left++;
+        }
+        else{
+            right--;
+        }
+      } 
+      return maxArea; 
+    }
+}
