@@ -1,0 +1,24 @@
+// Count Good Numbers
+
+class Solution {
+    static final long M=1000000007;
+    public int countGoodNumbers(long n) {
+        // even position= (n+1)/2 and odd positions =n/2
+        // total elements possible in even positions = 5 (0,2,4,6,8)
+        // total elements possible in odd positions = 4 (2,3,5,7)
+        return (int) ((power(5,(n+1)/2)) * power(4,n/2)%M);
+    }
+    static long power(long a , long b){
+        // base case: kisi bhi number ka 0 power = 1
+        if(b==0) return 1;
+        //// recursion: exponent ko half karte jao
+        long half=power(a,b/2);
+        // half power ko square karo aur modulo apply karo
+        long result=(half*half)%M;
+        //agar exponent odd hai to ek extra 'a' multiply karna padega
+        if(b%2==1){
+            result=(result*a)%M;
+        }
+        return result;
+    }
+}
